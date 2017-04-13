@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>小静龙 - 首页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="小静龙"/>
+<meta name="description" content="小静龙-Thinkphp" />
+<meta property="qc:admins" content="75567554576471436375" />
+<meta name="baidu-site-verification" content="SxafrSACtL" />
+<link href="__PUBLIC__/css/style1.css" rel="stylesheet" type="text/css" />
+<link rel="icon" href="__PUBLIC__/images/logo.ico" type="image/x-icon"/>
+</head>
+<body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+         	<li class="active"><a href="{:U('Home/Index/index')}">首页</a></li>
+         	<?php foreach ($category as $k => $v): ?>
+         		<li class="active"><a href="{:U('Home/Category/cate/',array('cid'=>$v['cid']))}">{$v.cname}</a></li>
+         	<?php endforeach ?>
+          <?php if (!$userlogo): ?>
+            <li>
+            <a href="{:U('Home/QQlogin/QQlogin')}" style="display:block;height:30px;background:url(__PUBLIC__/images/QQ.png) no-repeat 0 0;"></a></li>
+          <?php else: ?>
+            <li><img src="<?php echo $userlogo; ?>" alt=""></li>
+          <?php endif ?>
+          
+        </ul>
+      </div>
+      <div class="logo"><h1><a href="{:U('Home/Index/index')}">小静龙</a></h1></div>
+      <div class="clr"></div>
+    </div>
+  </div>

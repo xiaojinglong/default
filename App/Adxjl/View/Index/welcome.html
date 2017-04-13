@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>welcome - 小静龙</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <style>
+        body{
+            background: #ccc;
+        }
+        div.row div{
+            line-height:50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding:3%">
+        <div class="row">
+            <p>服务器信息:</p>
+            <div class="col-md-4" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             主机名称:
+            </div>
+            <div class="col-md-8" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             <?php echo $_SERVER['SERVER_NAME']  ?>
+            </div>
+       </div>
+       <div class="row">
+            <div class="col-md-4" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             服务器：
+            </div>
+            <div class="col-md-8" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             <?php echo $_SERVER['SERVER_SOFTWARE']  ?>
+            </div>
+       </div>
+       <div class="row">
+           
+            <div class="col-md-4" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             登录IP:
+            </div>
+            <div class="col-md-8" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+            <?php echo $_SERVER['REMOTE_ADDR']  ?>
+            </div>
+       </div>
+       <div class="row">
+            <div class="col-md-4" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             端口:
+            </div>
+            <div class="col-md-8" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             <?php echo $_SERVER['REMOTE_PORT'] ?>
+            </div>
+       </div>
+       <div class="row">
+            <div class="col-md-4" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             服务器端口:
+            </div>
+            <div class="col-md-8" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             <?php echo $_SERVER['SERVER_PORT'] ?>
+            </div>
+       </div>
+       <br>
+       <div class="row">
+            <p>用户信息:</p>
+            <div class="col-md-4" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             用户名:
+            </div>
+            <div class="col-md-8" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             <?php echo $_SESSION['uname'] ?>
+            </div>
+       </div>
+       <div class="row">
+            <div class="col-md-4" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+             登录IP
+            </div>
+            <div class="col-md-8" style="background-color: #dedef8;
+             box-shadow: inset 1px -1px 1px #06D995, inset -1px 1px 1px #06D995;">
+            <?php echo $_SERVER['REMOTE_ADDR']  ?>
+            </div>
+       </div>
+    </div>
+    <script  src="__PUBLIC__/js/jquery.min.js"></script>
+    <script  src="__PUBLIC__/js/bootstrap.min.js"></script>
+</body>
+</html>

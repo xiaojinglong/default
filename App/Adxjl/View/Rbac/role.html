@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小静龙 - 角色显示</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <style type="text/css">
+    #page div a{width:20px;margin:5px;font-size:18px;};
+    #page div span{width:20px;margin:5px;}
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="padding-top:30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">角色显示:</h3>
+            </div>
+            <table class="table">
+                <th>角色名称</th><th>是否显示</th><th>操作</th>
+                <?php if ($role): ?>
+                    <?php foreach ($role as $k => $v): ?>
+                        <tr >
+                            <td >{$v.name}</td>
+                            <td >
+                                <?php if ($v['status']==1): ?>
+                                    <button  style="border:none;background:green;" rid="{$v.id}" status="{$v['status']}">打开</button>
+                                    <button  style="border:none;background:#A7C0DC;" rid="{$v.id}" status="{$v['status']}">关闭</button>
+                                <?php else: ?>
+                                    <button  style="border:none;background:green;" rid="{$v.id}" status="{$v['status']}">打开</button>
+                                    <button  style="border:none;background:#A7C0DC;" rid="{$v.id}" status="{$v['status']}">关闭</button>
+                                <?php endif ?>
+                            </td>
+                            <td >
+                                【<a href="{:U('Adxjl/Rbac/access/',array('rid'=>$v['id']))}">配置权限</a>】
+                            </td>
+                        </tr>    
+                    <?php endforeach ?>   
+                <?php else: ?>
+                    <tr><td>没有角色</td></tr>
+                <?php endif ?>
+            </table>
+        </div>
+    </div>
+<script  src="__PUBLIC__/js/jquery.min.js"></script>   
+<script  src="__PUBLIC__/js/bootstrap.min.js"></script> 
+<script>
+</script>  
+</body>
+</html>

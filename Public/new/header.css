@@ -1,0 +1,147 @@
+*{padding:0px;margin:0px;text-decoration: none;}
+img{border: none;}
+.removeBorder{
+	border:none;
+}
+#headers{
+	width:100%;
+	height:auto;
+	z-index:9999;
+	position: fixed;
+	overflow: hidden;
+}
+#headers div.content{
+	width:96%;
+	height:60px;
+	line-height: 60px;
+	padding: 0px 2%;
+	background: #3E4147;
+}
+#headers div.content div.hleft{
+	width:17%;
+	height:60px;
+	display: block;
+	float: left;
+	line-height: 60px;
+	background: #3E4147;
+	overflow: hidden;
+}
+#headers div.content div.hleft a.alogo img{
+	width:45%;
+	height:60px;
+	display: block;
+	float: left;
+	line-height: 60px;
+	background: #3E4147;
+}
+#headers div.content div.hleft span{
+	width:50%;
+	height:50px;
+	display: block;
+	float: left;
+	font-weight: 800;
+	color:#fff;
+	padding: 0px 4px;
+	font-size: 30px;
+	line-height: 60px;
+	background: #3E4147;
+}
+#headers div.content div.hcenter{
+	width:50%;
+	height:60px;
+	display: block;
+	float: left;
+	line-height: 60px;
+	background: #3E4147;
+	overflow: hidden;
+}
+#headers div.content div.hcenter ul{
+	width:98%;
+	height:60px;
+	padding:0px 1%;
+	line-height: 60px;
+	background: #3E4147;
+	list-style: none;
+	overflow: hidden;
+}
+#headers div.content div.hcenter ul.nav li{
+	width:10%;
+	height:60px;
+	padding:0px 1%;
+	display: block;
+	float: left;
+	text-align: center;
+	line-height: 60px;
+	background: #3E4147;
+	list-style: none;
+	overflow: hidden;
+}
+#headers div.content div.hcenter ul.nav li a{
+	color: #ccc;
+	font-weight: 700;
+	font-size: 16px;
+}
+#headers div.content div.hright{
+	width:32%;
+	height:60px;
+	display: block;
+	float: right;
+	line-height: 60px;
+	background: #3E4147;
+	overflow: hidden;
+}
+#headers div.content div.hright  form{
+	width:70%;
+	height:60px;
+	display: block;
+	float: left;
+	line-height: 60px;
+	background: #3E4147;
+	overflow: hidden;
+	position: relative;
+}
+#headers div.content div.hright  form input.input{
+	display: none;
+	width:80%;
+	height:60px;
+	line-height: 60px;
+	background: #272822;
+	color:#ddd;
+	border:none;
+	outline:#272822;
+	font-size: 17px;
+	font-weight: 300;
+	overflow: hidden;
+	position: absolute;
+	left:210px;
+}
+#headers div.content div.hright  form span{
+	width:20%;
+	height:60px;
+	color:#fff;
+	line-height: 60px;
+	text-align: center;
+	background: #272822;
+	position: absolute;
+	right:0px;
+}
+#headers div.content div.hright  div.logReg{
+	width:30%;
+	height:60px;
+	display: block;
+	float: right;
+	line-height: 60px;
+	background: #3E4147;
+	overflow: hidden;
+}
+#headers div.content div.hright  div.logReg a{
+	width:50%;
+	height:60px;
+	display: block;
+	float: right;
+	text-align: center;
+	color:#ccc;
+	line-height: 60px;
+	background: #3E4147;
+	overflow: hidden;
+}

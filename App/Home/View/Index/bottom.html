@@ -1,0 +1,39 @@
+  <div class="footer" style="text-align:center;">
+    <div class="footer_resize">
+      <p class="lf"> Copyright &copy;小静龙  浙ICP备15032894号-2</p>
+      <div style="width:300px;margin:0 auto;">
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602005284" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="__PUBLIC__/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33010602005284号</p></a>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+ <script>
+      $(function(){
+        var urlNew="{:U('Home/Index/getNewArticle')}";
+        var urlClick="{:U('Home/Index/getClickArticle')}";
+        var articleUrl="{:U('Home/Article/detail','','')}";
+        $.get(urlNew,'',function(d){
+            if(d.code=='1'){
+                var html='';
+                for(var i=0;i<d.data.length;i++){
+                  html+='<li><a href="'+articleUrl+'/aid/'+d.data[i].aid+'" target="_blank">'+d.data[i].title+'</a></li>'
+                }
+                $('ul.sb_menu').html('').html(html);
+            }
+        })
+        $.get(urlClick,'',function(d){
+            if(d.code=='1'){
+                var html='';
+                for(var i=0;i<d.data.length;i++){
+                  html+='<li><a href="'+articleUrl+'/aid/'+d.data[i].aid+'" target="_blank">'+d.data[i].title+'</a></li>'
+                }
+                $('ul.ex_menu').html('').html(html);
+            }
+        })
+      })
+      </script>
+      <script src="http://www.juzilm.com/page/?s=2949"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<include file="Index:header"/>
+<style>
+    div.page{
+        text-align: center;
+        font-size: 18px;
+
+    }
+    div.page a{
+        text-align: center;
+        padding:5px;
+        text-decoration: none;
+        font-size: 18px;
+        
+    }
+    div.page span{
+        text-align: center;
+        padding:5px;
+        font-size: 18px;
+        
+    }
+</style>
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <?php foreach ($Article as $k => $v): ?>
+        <div class="article">
+            <h2>{$v.title}</h2><div class="clr"></div>
+            <p><span class="date">{$v.time|date='Y-m-d',###}</span> {$v.author}</p>
+            <p style="overflow:hidden;text-align:center;"><a href="{:U('Home/Article/detail/',array('aid'=>$v['aid']))}" target="_blank"><img src="__ROOT__/<?php echo $v['thumb'];?>" alt=""></a></p>
+        </div>
+        <?php endforeach ?>
+       <div class="page"><?php echo $page ?></div>
+      </div>
+       <include  file="Index:right"  />
+      <div class="clr"></div>
+    </div>
+  </div>
+<include file="Index:bottom"/>

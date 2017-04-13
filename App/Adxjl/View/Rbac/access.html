@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小静龙 - 配置权限</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <style type="text/css">
+    #page div a{width:20px;margin:5px;font-size:18px;};
+    #page div span{width:20px;margin:5px;}
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="padding-top:30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">配置权限:</h3>
+            </div>
+            <form action="{:U('Adxjl/Rbac/accessControl')}"  method="post">
+                <table class="table">
+                    <div class="col-xs-12 col-sm-12" style="padding:5px;">[<a style="font-size:16px;font-weight:700;" href="{:U('Adxjl/Rbac/role')}">返回</a>]</div>
+                    <?php if ($node): ?>
+                        <?php foreach ($node as $k => $v): ?>
+                            <div class="col-xs-12 col-sm-12 box" style="border-bottom:1px solid #ccc;padding:5px;margin-left:5px;">
+                                <input type="checkbox" name="access[]" value="{$v['id']}_1"  level="1" <?php if ($v['access']): ?>
+                                    checked="checked"<?php endif ?> class="firstNode"><span class="btn btn-success">{$v.remark}</span>
+                                <?php foreach ($v['child'] as $key => $value): ?>
+                                    <div class="col-xs-12 col-sm-12 boxtwo" style="padding:5px;">
+                                        <p><input type="checkbox" name="access[]" value="{$value['id']}_2" <?php if ($value['access']): ?>
+                                    checked="checked"<?php endif ?> class="secondNode"><span class="btn btn-warning">{$value.remark}</span></p>
+                                        <?php foreach ($value['child'] as $key => $val): ?>
+                                            <div class="col-xs-4 col-sm-4" style="padding:5px;">
+                                                <input type="checkbox" name="access[]" value="{$val['id']}_3" <?php if ($val['access']): ?>
+                                    checked="checked"<?php endif ?>><span class="btn btn-danger">{$val.remark}</span></div>
+                                        <?php endforeach ?>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>  
+                        <?php endforeach ?> 
+                    <?php else: ?>
+                        <div><span>没有节点</span></div>
+                    <?php endif ?>
+                        <div class="col-sm-10 text-center">
+                            <input  type="hidden"  name="rid" id="rid" value="{$rid}">
+                            <input type="submit" id="submit" value="提交" class="btn btn-default">
+                        </div>
+                </table>
+            </form>
+        </div>
+    </div>
+<script  src="__PUBLIC__/js/jquery.min.js"></script>   
+<script  src="__PUBLIC__/js/bootstrap.min.js"></script> 
+<script>
+$(function(){
+   $('input.firstNode').bind("click",function(){
+        var inputObj=$(this).parent('div.box').find('input');
+        $(this).prop('checked')?inputObj.prop('checked',true):inputObj.prop('checked',false);
+   })
+    $('input.secondNode').bind("click",function(){
+        var inputObj=$(this).parent('p').parent('div.boxtwo').find('input');
+        $(this).prop('checked')?inputObj.prop('checked',true):inputObj.prop('checked',false);
+   })
+    
+})
+</script>  
+</body>
+</html>

@@ -1,0 +1,278 @@
+#adImg{
+	width:100%;
+	height:auto;
+	padding-top:70px;
+	overflow: hidden;
+}
+#adImg div.content{
+	width:1200px;
+	height:80px;
+	line-height: 80px;
+	text-align: center;
+	margin:0 auto;
+	overflow: hidden;
+}
+#notecate{
+	width:100%;
+	height:auto;
+	padding-top:70px;
+	overflow: hidden;
+	padding:5px 0px;
+
+}
+#notecate div.content{
+	width:1200px;
+	height:auto;
+	padding:0px 5px;
+	margin:0 auto;
+	overflow: hidden;
+}
+#notecate div.content div.cateleft{
+	width:38%;
+	height:auto;
+	padding:0px 5px;
+	float: left;
+	overflow: hidden;
+}
+#notecate div.content div.cateleft h3{
+	width:100%;
+	height:auto;
+	padding:0px 5px;
+}
+#notecate div.content div.cateleft ul{
+	width:100%;
+	height:auto;
+	list-style: none;
+	padding:0px 5px;
+}
+#notecate div.content div.cateleft ul li{
+	width:25%;
+	height:25px;
+	line-height: 25px;
+	list-style: none;
+	padding:0px 5px;
+	margin:1%;
+	background: #F8F8FF;
+	text-align: center;
+	float: left;
+}
+#notecate div.content div.cateleft ul li:hover{
+	background: #27AE60;
+	font-size:16px;
+}
+#notecate div.content div.cateright{
+	width:60%;
+	height:250px;
+	z-index:100;
+	float: right;
+	overflow: hidden;
+}
+
+#notecate div.content div img{
+	width:100%;
+	height:auto;
+}
+#notecate div.content div.cateright  div.noticeDiv{
+	width:100%;
+	height:30px;
+	margin:5px 0px;
+	overflow: hidden;
+}
+#notecate div.content div.cateright  div.noticeDiv div.notice{
+	width:60%;
+	height:30px;
+	float: left;
+	overflow: hidden;
+}
+#notecate div.content div.cateright  div.noticeDiv div.notice div.swiper-wrapper a{
+	text-align: left;
+}
+
+#notecate div.content div.cateright  div.noticeDiv a{
+	width:15%;
+	height:auto;
+	display: block;
+	line-height: 30px;
+	z-index:100;
+	float: left;
+	overflow: hidden;
+}
+#note{
+	width:100%;
+	height:auto;
+	overflow: hidden;
+	margin:5px 0px;
+}
+#note div.content{
+	width:1200px;
+	height:auto;
+	overflow: hidden;
+	margin:0px  auto;
+}
+#note div.content div.leftnote{
+	width:26%;
+	height:auto;
+	padding:0px 5px;
+	overflow: hidden;
+	float: left;
+}
+#note div.content div.leftnote h3{
+	width:80%;
+	height:auto;
+	padding:0px 5px;
+	overflow: hidden;
+}
+#note div.content div.leftnote ul{
+	width:80%;
+	height:auto;
+	padding:0px 5px;
+	overflow: hidden;
+	list-style: none;
+}
+#note div.content div.leftnote ul li{
+	width:80%;
+	height:30px;
+	padding:5px 5px;
+	font-size:15px;
+	overflow: hidden;
+	list-style: none;
+	line-height: 30px;
+}
+#note div.content div.centernote{
+	width:36%;
+	height:auto;
+	padding:0px 5px;
+	overflow: hidden;
+	float: left;
+}
+#note div.content div.centernote  ul{
+	width:100%;
+	height:auto;
+	overflow: hidden;
+	list-style: none;
+}
+#note div.content div.centernote ul li{
+	width:90%;
+	height:auto;
+	margin-top: 5px;
+	padding:5px 5px;
+	font-size:15px;
+	overflow: hidden;
+	list-style: none;
+}
+#note div.content div.centernote ul li div.topinfo{
+	width:100%;
+	height:auto;
+
+}
+#note div.content div.centernote ul li div.topinfo img{
+	width:60px;
+	height:60px;
+	border-radius: 60px;
+	display: block;
+	float: left;
+
+}
+#note div.content div.centernote ul li div.topinfo div.info{
+	width:auto;
+	height:auto;
+	padding-left:3%;
+	float: left;
+
+}
+#note div.content div.centernote ul li div.topinfo div.info p.title{
+	width:100%;
+	line-height: 35px;
+	text-align: left;
+}
+#note div.content div.centernote ul li div.topinfo div.info p.status{
+	width:100%;
+	line-height: 30px;
+	text-align: left;
+}
+#note div.content div.centernote ul li div.topinfo div.info p.status span{
+	margin:0px 5px;
+}
+#note div.content div.centernote ul li  div.bottominfo{
+	text-indent: 5px;
+	font-size: 16px;
+}
+#note div.content div.rightnote{
+	width:26%;
+	height:auto;
+	padding:0px 5px;
+	overflow: hidden;
+	float: right;
+}
+#note div.content div.rightnote   h3{
+	width:80%;
+	height:auto;
+	padding:0px 5px;
+	overflow: hidden;
+}
+#note div.content div.rightnote   div.tools{
+	width:100%;
+	height:auto;
+	padding:5px 5px;
+	overflow: hidden;
+}
+#note div.content div.rightnote   div.tools div.swiper-container3{
+	width:100%;
+	padding:5px 0px;
+	height:auto;
+}
+#note div.content div.rightnote   div.tools div.swiper-container3 div.swiper-wrapper{
+	width:100%;
+	height:auto;
+	text-align: center;
+}
+#note div.content div.rightnote   div.tools div.swiper-container3 div.swiper-wrapper div.swiper-slide{
+	width:28%;
+	text-align: center;
+	height:auto;
+}
+#note div.content div.rightnote   div.tools div.swiper-container3 div.swiper-wrapper div.swiper-slide img{
+	width:90%;
+
+	height:85px;
+	border-radius: 85px;
+}
+#note div.content div.rightnote h3.wait{
+	padding-top: 5px;
+}
+#note div.content div.rightnote div.topic{
+	width:100%;
+	height:auto;
+	padding: 5px 0px;
+	margin: 5px 0px;
+	overflow: hidden;
+}
+#note div.content div.rightnote div.topic a{
+	display: block;
+	width:100%;
+	height:150px;
+	padding-top: 5px;
+	position: relative;
+}
+#note div.content div.rightnote div.topic a img{
+	position: absolute;
+	width:100%;
+	height:130px;
+	top:0px;
+	left: 0px;
+}
+#note div.content div.rightnote div.topic a span.title{
+	position: absolute;
+	top:20%;
+	left: 20%;
+}
+#note div.content div.rightnote div.topic a span.total{
+	position: absolute;
+	top:40%;
+	left: 30%;
+}
+
+
+
+
+

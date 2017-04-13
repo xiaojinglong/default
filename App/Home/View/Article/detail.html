@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>小静龙 -- 首页</title>
+	<link rel="stylesheet" href="__PUBLIC__/newstyle/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/newstyle/css/style.css">
+	<style>
+	div.page{
+        text-align: center;
+        font-size: 18px;
+
+    }
+	div.page a{
+        text-align: center;
+        padding:5px;
+        text-decoration: none;
+        font-size: 18px;
+        
+    }
+    div.page span{
+        text-align: center;
+        padding:5px;
+        font-size: 18px;
+        
+    }</style>
+	<script src="__PUBLIC__/newstyle/js/jquery.min.js"></script>
+	<script src="__PUBLIC__/newstyle/js/bootstrap.min.js"></script>
+	<script src="__PUBLIC__/newstyle/js/holder.js"></script>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+ <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+ <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script>
+	$(function () {
+		
+  		$('button.face').click(function(){
+  			$('div.faceimg').toggle(100);
+  		})
+  		/*添加表情*/
+  		$('img.biaoqing').click(function(){
+  			var imgUrl=$(this).attr('src');
+  			$('#textInfo').append('<img src="'+imgUrl+'" />');
+  		})
+  		/*发布评价*/
+  		$('button.sendMsg').click(function(){
+  			var aid=$(this).attr('aid');
+            var content=$('#textInfo').html();
+  			if($('#textInfo').html()==''){
+  				$('h3.alertMsg').html('').html('请输入内容');
+  				$('#myModal').modal('show');
+  				return false;
+  			}
+  			if($('#textInfo').html().length>255){
+  				$('h3.alertMsg').html('').html(d.msg);
+  				$('#myModal').modal('show');
+  				return false;
+  			}
+  			$.post("{:U('Home/Article/comment')}",{'aid':aid,'content':$('#textInfo').html()},function(d){
+  				if(d.code=='1'){
+  					$('h3.alertMsg').html('').html(d.msg);
+  					$('#myModal').modal('show');
+                    $('#textInfo').html('');
+                    var html='';
+                    html+='<div class="col-md-12 add-margin-bottom-xs add-margin-top-xs" style="border:1px solid #ccc"><div class="col-md-3" ><img src="'+"__ROOT__/"+d.headimg+'"  style="width:50%;height:50%"  class="img-responsive img-thumbnail" alt=""></div><div class="col-md-9" style="text-align:left;font-size:14px;font-weight:800;">'+content+'</div></div>';
+                    $('#comment').prepend(html);
+  				}else{
+  					$('h3.alertMsg').html('').html(d.msg);
+  					$('#myModal').modal('show');
+  					$('#textInfo').html('');
+  				}
+  			})
+  		})
+  		$('div.infos').mouseleave(function(){
+  			$('div.faceimg').hide(500);
+  		})
+        /*赞*/
+  		$('span.zan').click(function(){
+  			var aid=$(this).attr('aid');
+  			var oldVal=parseInt($(this).html());
+  			$.post("{:U('Home/Article/zan')}",{'aid':aid},function(d){
+  				if(d.code=='1'){
+  					$('span.zan').html('').html('+1');
+  					setTimeout(function(){
+  						$('span.zan').html(parseInt(oldVal+1));
+  					},1000);
+  				}else{
+  					$('h3.alertMsg').html('').html(d.msg);
+  					$('#myModal').modal('show');
+  				}
+  			})
+  		})
+        // 踩
+  		$('span.cai').click(function(){
+  			var aid=$(this).attr('aid');
+  			var oldVal=parseInt($(this).html());
+  			$.post("{:U('Home/Article/cai')}",{'aid':aid},function(d){
+  				if(d.code=='1'){
+  					$('span.cai').html('').html('+1');
+  					setTimeout(function(){
+  						$('span.cai').html(parseInt(oldVal+1));
+  					},1000);
+  				}else{
+  					$('h3.alertMsg').html('').html(d.msg);
+  					$('#myModal').modal('show');
+  				}
+  			})
+  		})
+        // 加载更多评价
+        $('span.getMore').click(function(){
+            var p=parseInt($(this).attr('p'))+1;
+            $.get("{:U('Home/Article/getMoreComment')}",{'aid':$(this).attr('aid'),'p':p},function(d){
+                if(d.code=='1'){
+                    var html='';
+                    var d=d.data;
+                    for(var i=0;i<d.length;i++){
+                        html+='<div class="col-md-12 add-margin-bottom-xs add-margin-top-xs" style="border:1px solid #ccc"><div class="col-md-3" ><img src="'+"__ROOT__/"+d[i].headimg+'"  style="width:50%;height:50%"  class="img-responsive img-thumbnail" alt=""></div><div class="col-md-9" style="text-align:left;font-size:14px;font-weight:800;">'+d[i].content+'</div></div>';
+                    }
+
+                    $('#comment').append(html);
+                     $('span.getMore').attr('p',p);
+                }else{
+                    $('h3.alertMsg').html('').html(d.msg);
+                    $('#myModal').modal('show');
+                }
+            })
+        })
+	})
+</script>
+</head>
+<body>
+	<header class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<h1><a href="{:U('Home/Index/index')}">小静龙博客</a></h1>
+			</div>
+			<div class="col-md-8" style="line-height:69px;">
+				<ul class="nav nav-pills">
+					<li role="presentation" class="">
+				    	<a  href="{:U('Home/Index/index')}" style="font-size:18px;font-weight:700;" >首页</a>
+				  	</li>
+					<?php foreach ($category as $k => $v): ?>
+				 	<li role="presentation" class="">
+				    	<a  href="{:U('Home/Category/cate/',array('cid'=>$v['cid']))}" style="font-size:18px;font-weight:700;" target="_blank" role="button" >{$v.cname}</a>
+				  	</li>
+					<?php endforeach ?>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="clearfix"></div>
+	<section class="commonCss">
+		<div class=""></div>
+	</section>
+	<div class="clearfix"></div>
+	<section class="commonCss">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-default" style="">
+						<div class="panel-heading add-margin-left-xs">
+							<a href="{:U('Home/Index/index')}" ><span class="glyphicon glyphicon-backward"></span>返回</a>
+						</div>
+						<div class="page-header" style="text-align: center;">
+  							<h3>{$Article.title}<small>{$Article.time|date='Y-m-d',###}</small></h3>
+						</div>
+						<div class="panel-body"  style="padding:0px 4%;overflow: hidden">
+						    <?php echo htmlspecialchars_decode($Article['content']);?>
+						</div>
+						<div class="panel-footer" style="padding-bottom:80px;">
+							<div class="row add-margin-bottom-xs">
+								<div class="col-md-12 add-padding-bottom-xs add-margin-bottom-xs" style="text-align:center">
+									<span class="btn btn-default bg-primary glyphicon glyphicon-thumbs-up btn-lg zan" style="color:#D04825;" aid="{$Article.aid}">{$Article.zan}</span>
+									<span class=" btn btn-default glyphicon glyphicon-thumbs-down  btn-lg cai" aid="{$Article.aid}"  style="color:#9BB7CC">{$Article.cai}</span>
+								</div>
+								<div class="col-md-12 infos">
+										<div class="form-control" style="height:100px;" contenteditable="true" id="textInfo"></div>
+										<div class="clearfix"></div>
+										<div class="toolss" style="position:relative">
+											<button class="glyphicon glyphicon-gift btn-md face">表情</button>
+											<div class="faceimg">
+												<?php foreach ($BIAOQING as $k => $v): ?>
+													<img src="__PUBLIC__/faceimg/{$v}" alt="" class="biaoqing"  val="{$k}">
+												<?php endforeach ?>
+											</div>
+											<button class="pull-right btn-lg bg-primary sendMsg" aid="{$Article.aid}">发布</button>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="text-align:center;" >
+                            <div class="col-md-12"><span  class="page-header lead" style="padding:none;margin:none;">评论</span></div>
+                            <div class="row" id="comment">
+                                <?php foreach ($articleComment as $key => $value): ?>
+                                    <div class="col-md-12 add-margin-bottom-xs add-margin-top-xs" style="border:1px solid #ccc">
+                                        <div class="col-md-3" ><img src="__ROOT__/{$value.headimg}"  style="width:50%;height:50%"  class="img-responsive img-thumbnail" alt=""></div>
+                                        <div class="col-md-9" style="text-align:left;font-size:14px;font-weight:800;">
+                                            <?php echo htmlspecialchars_decode($value['content']);?>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
+                               
+                            </div>
+                            <div class="row"> <div class="col-md-12" style="text-align:center;"><span class="btn  getMore" p="1" aid="{$Article.aid}">加载更多</span></div></div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog"  style="background:none;"  aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" >
+    <div class="modal-content" style="background:#0BD0F5;margin-top:50%">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body" style="text-align:center">
+        <h3 class="alertMsg"></h3>
+      </div>
+    </div>
+  </div>
+</div>
+	<div class="clearfix"></div>
+	<footer class="commonCss add-margin-top-md" >
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 center-middle add-margin-top-xs">Copyright ©小静龙 浙ICP备15032894号-2</div>
+				<div class="col-md-12 center-middle add-margin-top-xs"><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602005284" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="__PUBLIC__/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33010602005284号</p></a></div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

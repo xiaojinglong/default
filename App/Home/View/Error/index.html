@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>页面找不到了</title>
+	<style>
+		*{padding:0;margin:0;}
+		#box{width:100%;height:auto;overflow: auto; background: #EEEEEE;overflow-y: hidden}
+		#box a{
+			width:100%;
+			height:1000px;
+			line-height: 1000px;
+			max-height:1500px;
+			display: block;
+			font-size: 30px;
+			font-weight: 700;
+			text-decoration: none;
+			text-align: center;
+			background: url(__PUBLIC__/images/error.jpg) no-repeat 0px 50px;
+		}
+		#box a div{
+
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<a href="{:U('Home/Index/index')}">
+			<div class="time"></div>
+		</a>
+	</div>
+	<script  src="__PUBLIC__/js/jquery.min.js"></script>
+	<script>
+	$(function(){
+		var i=3;
+		setInterval(function(){
+			var s=i--;
+			if(s>0){
+				$('div.time').html(s);
+			}
+			else{
+				location.href="{:U('Home/Index/index')}";
+			}
+		},1000);
+	})
+	</script>
+</body>
+</html>

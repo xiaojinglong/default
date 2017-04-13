@@ -1,0 +1,50 @@
+body{
+	background: #DEF8F9;
+}
+a:hover{
+	text-decoration: none;
+}
+a{
+	text-decoration: none;
+	color:black;
+}
+.commonCss{
+	width:100%;
+	height:auto;
+}
+.none-padding {
+    padding: 0 !important;
+}
+.add-padding-bottom-xs{
+	padding-bottom:15px;
+}
+.add-margin-bottom-xs{
+	margin-bottom:5px;
+}
+.add-margin-left-xs{
+	margin-left:5px;
+}
+.add-margin-right-xs{
+	margin-right:5px;
+}
+.add-margin-top-xs{
+	margin-top:5px;
+}
+.add-margin-top-md{
+	margin-top:15px;
+}
+.add-padding-top-xs{
+	padding-top:5px;
+}
+.none-border{
+	border:none;
+}
+.center-middle{
+	text-align: center;
+}
+.faceimg{
+border:1px solid #ccc;width:420px;height:100px;position:absolute;top:20px;left:0px;display: none;
+}
+.faceimg img{
+	cursor:pointer;
+}

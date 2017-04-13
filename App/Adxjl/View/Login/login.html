@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>小静龙 - 登录</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="小静龙 - 登录" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="__PUBLIC__/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="__PUBLIC__/css/style.css" rel='stylesheet' type='text/css' />
+<link href="__PUBLIC__/css/font-awesome.css" rel="stylesheet"> 
+<link rel="stylesheet" href="__PUBLIC__/admincss/login.css">
+<link rel="icon" href="__PUBLIC__/images/logo.ico" type="image/x-icon"/>
+<script>
+	var verifyUrl="{:U('Adxjl/Login/code','','')}";
+</script>
+</head>
+<body>
+  <div class="login-logo">
+    <a href="javascript:void(0);"></a>
+  </div>
+  <h2 class="form-heading" style="font-weight: 800;font-size:28px;">登录</h2>
+  <div class="app-cam">
+	  <form >
+		<input type="text" class="text username" placeholder="用户名"  style="font-size:16px;"/>
+		<input type="password" class="password" placeholder="密码" style="font-size:16px;"/>
+		<div class="text">
+			<input type="text" class="text verify" placeholder="验证码" style="width:40%;font-size:16px;"/>
+			<img src="{:U('Adxjl/Login/code')}" id="verify" style="cursor:pointer;"/>
+		</div>
+		<div class="submit"><input type="button" style="width:100%;height:40px;background:#06D995;border-radius:20px;border:none;" value="登录" id="submit"></div>
+		<ul class="new">
+			<h3 id="error" style="color:#196AC6;font-size:16px;text-align:center;font-weight:800;"></h3>
+			<div class="clearfix"></div>
+		</ul>
+	</form>
+  </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="margin-top:200px;">
+   <div class="modal-dialog">
+      <div class="modal-content" style="height:200px;">
+         <div class="modal-body" id="info" style="text-align:center;height:180px;line-height:180px;font-size:20px;">
+            正在登录...
+         </div>
+      </div>
+</div>
+  <script src="__PUBLIC__/js/jquery.min.js"></script>
+  <script src="__PUBLIC__/js/jquery.cookie.js"></script>
+  <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+  <script>
+	$(function(){
+		if($.cookie("username")){$('input.username').val($.cookie("username"))}
+		$('#submit').click(function(){
+			var username=$('input.text').val().replace(/^\s+|\s+$/g,"");
+			var password=$('input.password').val().replace(/^\s+|\s+$/g,"");
+			var verify=$('input.verify').val().replace(/^\s+|\s+$/g,"");
+			var url="{:U('Adxjl/Login/handle')}";
+			var data={'username':username,'password':password,'verify':verify};
+			if(!username){
+				msg($('#error'),'用户名不能为空!');
+				return false;
+			}
+			if(!password){
+				msg($('#error'),'密码不能为空!');
+				return false;
+			}
+			if(!verify){
+				msg($('#error'),'验证码不能为空!');
+				return false;
+			}
+			$.cookie("username", username,{ expires: 1 });
+			$.post(url,data,function(d){
+				if(d.code=='1'){
+					$('#myModal').modal('show');
+					setTimeout(function(){
+						location.href="{:U('Adxjl/Index/index')}";
+					},1000)
+					
+				}else{
+					msg($('#error'),d.msg);
+					setTimeout(function(){
+						location.reload();
+					},1000)
+				}
+			})
+		})
+		/*切换验证码*/
+		$('#verify').click(function(){
+			$(this).attr('src',verifyUrl+'/'+Math.random());
+		})
+		$(document).keydown(function (event) {
+    		if (event.keyCode == 13) {
+        		$('#submit').click();
+    		}
+    	})
+
+		function   msg(object,content){
+			var random=parseInt(Math.random()*(5-1)+1);
+			var colorString;
+			switch(random){
+				case 1:
+				colorString='red';
+				break;
+				case 2:
+				colorString='green';
+				break
+				case 3:
+				colorString='blue';
+				break;
+				case 4:
+				colorString='purple';
+				break;
+				case 5:
+				colorString='brown';
+				break;
+				default:
+				colorString='black';
+			}
+			object.css('color',colorString);
+			object.html('');
+			object.html(content);
+		}
+	})  	
+  </script>
+</body>
+</html>

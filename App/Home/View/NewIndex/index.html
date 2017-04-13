@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="__PUBLIC__/new/header.css">
+	<link rel="stylesheet" href="__PUBLIC__/new/index.css">
+	<link rel="stylesheet" href="__PUBLIC__/new/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/new/css/swiper.min.css">
+	<script src="//cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+	<script src="__PUBLIC__/new/js/swiper.jquery.min.js"></script>
+</head>
+<body>
+	<header id="headers">
+		<div class="content">
+			<div class="hleft">
+				<a href="" class="alogo">
+					<img src="__PUBLIC__/new/img/logo.png" alt="">
+				</a>
+				<span>前端网</span>
+			</div>
+			<div class="hcenter">
+				<ul class="nav">
+					<li><a href="">首页</a></li>
+					<li><a href="">笔记</a></li>
+					<li><a href="">话题</a></li>
+					<li><a href="">发现</a></li>
+					<li><a href="">资源</a></li>
+				</ul>
+			</div>
+			<div class="hright">
+				<form action="" class="search" id="searchForm"  onmouseleave="closeSearch(this)">
+					<input type="text" class=" input" placeholder=" 输入关键字搜索">
+					<span type="button" class="fa fa-search " onmouseover="openSearch(this)"></span>
+				</form>
+				<div class="logReg">
+					<a href="">注册</a>
+					<a href="">登录</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div class="clear"></div> 
+	<section id="adImg">
+		<div class="content">
+			<img src="__PUBLIC__/new/img/1.jpg" alt="">
+		</div>
+	</section>
+	<div class="clear"></div> 
+	<section id="notecate">
+		<div class="content">
+			<div class="cateleft">
+				<h3><i class="fa fa-tags"></i>笔记分类</h3>
+				<ul class="cate">
+					<li><a href="">HTML</a></li>
+					<li><a href="">DIV+CSS</a></li>
+					<li><a href="">PHP</a></li>
+					<li><a href="">PYTHON</a></li>
+					<li><a href="">JAVA</a></li>
+					<li><a href="">HTML</a></li>
+					<li><a href="">DIV+CSS</a></li>
+					<li><a href="">PHP</a></li>
+					<li><a href="">PYTHON</a></li>
+					<li><a href="">JAVA</a></li>
+					<li><a href="">HTML</a></li>
+					<li><a href="">DIV+CSS</a></li>
+					<li><a href="">PHP</a></li>
+					<li><a href="">PYTHON</a></li>
+					<li><a href="">JAVA</a></li>
+				</ul>
+			</div>
+			<div class="cateright ">
+				<div class="swiper-container swiper-container1">
+				  	<div class="swiper-wrapper">
+				    	<div class="swiper-slide">
+				    		<a href="">
+				    			<img src="__PUBLIC__/new/img/2.jpg" alt="">
+				    		</a>
+				    	</div>
+				    	<div class="swiper-slide">
+				    		<a href="">
+				    			<img src="__PUBLIC__/new/img/4.jpg" alt="">
+				    		</a>
+				    	</div>
+				    	<div class="swiper-slide">
+				    		<a href="">
+				    			<img src="__PUBLIC__/new/img/3.jpg" alt="">
+				    		</a>
+				    	</div>
+				  	</div>
+				  	<div class="swiper-pagination"></div>
+				    <div class="swiper-button-prev"></div>
+				    <div class="swiper-button-next"></div>
+				</div>
+		
+				<div class="noticeDiv">
+					<a href=""><i class="fa fa-bullhorn"></i>最新动态：</a>
+					<div class="swiper-container swiper-container2 notice" >
+				        <div class="swiper-wrapper">
+				            <div class="swiper-slide">
+				            	<a href="">Slide 1</a>
+				            </div>
+				            <div class="swiper-slide">
+				            	<a href="">Slide 2</a>
+				            </div>
+				            <div class="swiper-slide">
+				            	<a href="">Slide 3</a>
+				            </div>
+				        </div>
+				    </div>    
+		    	</div>
+			</div>
+		</div>
+	</section>
+	<div class="clear"></div> 
+	<section id="note">
+		<div class="content">
+			<div class="leftnote">
+				<h3><i class="fa fa-bookmark"></i>最新笔记</h3>
+				<ul class="notes">
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+					<li>Ant Design工具总结</li>
+				</ul>
+			</div>
+			<div class="centernote">
+				<h3><i class="fa fa-fire"></i>推荐笔记</h3>
+				<ul>
+					<li>
+						<div class="topinfo">
+							<img src="__PUBLIC__/new/img/5.gif" alt="">
+							<div class="info">
+								<p class="title">
+									<a href="">前端一锅煮</a>
+									<span>|</span>
+									<a href="">送你一枝笔</a>
+								</p>
+								<p class="status">
+									<span>浏览：574</span>
+									<span>回复：3</span>
+									<span>分类：HTML/CSS</span>
+								</p>
+							</div>
+						</div>
+						<div class="bottominfo">
+							canvas画布简单运用html代码效果预览="viewport"content="width= ...
+							1、常见的块级元素内联元素div-最常用的块级元素dl-和dt-dd搭配使用的块级元素form-交互表单h1-h6-大 ...
+						</div>
+					</li>
+					<li>
+						<div class="topinfo">
+							<img src="__PUBLIC__/new/img/5.gif" alt="">
+							<div class="info">
+								<p class="title">
+									<a href="">前端一锅煮</a>
+									<span>|</span>
+									<a href="">送你一枝笔</a>
+								</p>
+								<p class="status">
+									<span>浏览：574</span>
+									<span>回复：3</span>
+									<span>分类：HTML/CSS</span>
+								</p>
+							</div>
+						</div>
+						<div class="bottominfo">
+							canvas画布简单运用html代码效果预览="viewport"content="width= ...
+							1、常见的块级元素内联元素div-最常用的块级元素dl-和dt-dd搭配使用的块级元素form-交互表单h1-h6-大 ...
+						</div>
+					</li>
+					<li>
+						<div class="topinfo">
+							<img src="__PUBLIC__/new/img/5.gif" alt="">
+							<div class="info">
+								<p class="title">
+									<a href="">前端一锅煮</a>
+									<span>|</span>
+									<a href="">送你一枝笔</a>
+								</p>
+								<p class="status">
+									<span>浏览：574</span>
+									<span>回复：3</span>
+									<span>分类：HTML/CSS</span>
+								</p>
+							</div>
+						</div>
+						<div class="bottominfo">
+							canvas画布简单运用html代码效果预览="viewport"content="width= ...
+							1、常见的块级元素内联元素div-最常用的块级元素dl-和dt-dd搭配使用的块级元素form-交互表单h1-h6-大 ...
+						</div>
+					</li>
+					<li>
+						<div class="topinfo">
+							<img src="__PUBLIC__/new/img/5.gif" alt="">
+							<div class="info">
+								<p class="title">
+									<a href="">前端一锅煮</a>
+									<span>|</span>
+									<a href="">送你一枝笔</a>
+								</p>
+								<p class="status">
+									<span>浏览：574</span>
+									<span>回复：3</span>
+									<span>分类：HTML/CSS</span>
+								</p>
+							</div>
+						</div>
+						<div class="bottominfo">
+							canvas画布简单运用html代码效果预览="viewport"content="width= ...
+							1、常见的块级元素内联元素div-最常用的块级元素dl-和dt-dd搭配使用的块级元素form-交互表单h1-h6-大 ...
+						</div>
+					</li>
+					<li>
+						<div class="topinfo">
+							<img src="__PUBLIC__/new/img/5.gif" alt="">
+							<div class="info">
+								<p class="title">
+									<a href="">前端一锅煮</a>
+									<span>|</span>
+									<a href="">送你一枝笔</a>
+								</p>
+								<p class="status">
+									<span>浏览：574</span>
+									<span>回复：3</span>
+									<span>分类：HTML/CSS</span>
+								</p>
+							</div>
+						</div>
+						<div class="bottominfo">
+							canvas画布简单运用html代码效果预览="viewport"content="width= ...
+							1、常见的块级元素内联元素div-最常用的块级元素dl-和dt-dd搭配使用的块级元素form-交互表单h1-h6-大 ...
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="rightnote">
+				<h3><i class="fa fa-wrench"></i>工具库</h3>
+				<div class="tools">
+					<div class="swiper-container swiper-container3">
+					  	<div class="swiper-wrapper">
+					    	<div class="swiper-slide" >
+					    		<a href="">
+					    			<img src="__PUBLIC__/new/img/2.jpg" alt="">
+					    		</a>
+					    	</div>
+					    	<div class="swiper-slide">
+					    		<a href="">
+					    			<img src="__PUBLIC__/new/img/4.jpg" alt="">
+					    		</a>
+					    	</div>
+					    	<div class="swiper-slide">
+					    		<a href="">
+					    			<img src="__PUBLIC__/new/img/3.jpg" alt="">
+					    		</a>
+					    	</div>
+					  	</div>
+					    <div class="swiper-button-prev"></div>
+					    <div class="swiper-button-next"></div>
+					</div>
+				</div>
+				<h3  class="wait"><i class="fa fa-eye"></i>等你参与</h3>
+				<div class="topic">
+					<a href="">
+						<img src="__PUBLIC__/new/img/7.jpg" alt="">
+						<span class="title">#说个身边的小故事，小秘密呗</span>
+						<span class="total">已有786人参与</span>
+					</a>
+					<a href="">
+						<img src="__PUBLIC__/new/img/7.jpg" alt="">
+						<span class="title">#说个身边的小故事，小秘密呗</span>
+						<span class="total">已有786人参与</span>
+					</a>
+					<a href="">
+						<img src="__PUBLIC__/new/img/7.jpg" alt="">
+						<span class="title">#说个身边的小故事，小秘密呗</span>
+						<span class="total">已有786人参与</span>
+					</a>
+					<a href="">
+						<img src="__PUBLIC__/new/img/7.jpg" alt="">
+						<span class="title">#说个身边的小故事，小秘密呗</span>
+						<span class="total">已有786人参与</span>
+					</a>
+					<a href="">
+						<img src="__PUBLIC__/new/img/7.jpg" alt="">
+						<span class="title">#说个身边的小故事，小秘密呗</span>
+						<span class="total">已有786人参与</span>
+					</a>
+					<a href="">
+						<img src="__PUBLIC__/new/img/7.jpg" alt="">
+						<span class="title">#说个身边的小故事，小秘密呗</span>
+						<span class="total">已有786人参与</span>
+					</a>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="clear"></div> 
+</body>
+</html>
+
+<script>
+
+	function openSearch(obj){
+		$(obj).siblings().show().animate({left:'0px'}).focus().addClass('removeBorder');
+	}
+	function closeSearch(obj){
+		$(obj).children('input').animate({left:'400px'},"slow");
+	}
+
+	var mySwiper = new Swiper('.swiper-container1', {
+		autoplay: 5000,//可选选项，自动滑动
+		pagination: '.swiper-pagination',
+    	nextButton: '.swiper-button-next',
+    	prevButton: '.swiper-button-prev',
+    	paginationClickable :true,
+	});
+	var swiper = new Swiper('.swiper-container2', {
+        autoplay: 1000,
+        paginationClickable: true,
+        direction: 'vertical'
+    });
+    var mySwiper = new Swiper('.swiper-container3', {
+		autoplay: 5000,//可选选项，自动滑动
+    	nextButton: '.swiper-button-next',
+    	prevButton: '.swiper-button-prev',
+    	paginationClickable :true,
+    	width : 85, //你的slide宽度
+    	height:85,
+    	autoHeight: true, 
+	});
+</script>

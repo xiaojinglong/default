@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小静龙 - 用户显示</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <style type="text/css">
+    #page div a{width:20px;margin:5px;font-size:18px;};
+    #page div span{width:20px;margin:5px;}
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="padding-top:30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">用户显示:</h3>
+            </div>
+            <table class="table">
+                <th>用户名称</th><th>是否停用</th><th>角色</th><th>操作</th>
+                <?php if ($user): ?>
+                    <?php foreach ($user as $k => $v): ?>
+                        <tr >
+                            <td >{$v.uname}</td>
+                            <td >
+                                <?php if ($v['status']==1): ?>
+                                    <button  style="border:none;background:green;" rid="{$v.id}" status="{$v['status']}">打开</button>
+                                    <button  style="border:none;background:#A7C0DC;" rid="{$v.id}" status="{$v['status']}">关闭</button>
+                                <?php else: ?>
+                                    <button  style="border:none;background:green;" rid="{$v.id}" status="{$v['status']}">打开</button>
+                                    <button  style="border:none;background:#A7C0DC;" rid="{$v.id}" status="{$v['status']}">关闭</button>
+                                <?php endif ?>
+                            </td>
+                            <td >
+                                <?php foreach ($v['role'] as $key => $value): ?>
+                                    <button class="role" rid="{$value.rid}">{$value.rname}</button>
+                                <?php endforeach ?>
+                            </td>
+                            <td>
+                                【<a href="">锁定</a>】
+                            </td>
+                        </tr>    
+                    <?php endforeach ?>   
+                <?php else: ?>
+                    <tr><td>没有用户</td></tr>
+                <?php endif ?>
+            </table>
+        </div>
+    </div>
+<script  src="__PUBLIC__/js/jquery.min.js"></script>   
+<script  src="__PUBLIC__/js/bootstrap.min.js"></script> 
+<script>
+</script>  
+</body>
+</html>

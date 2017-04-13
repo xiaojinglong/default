@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小静龙 - 用户添加</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <script  src="__PUBLIC__/js/jquery.min.js"></script>   
+    <script  src="__PUBLIC__/js/bootstrap.min.js"></script> 
+</head>
+<body>
+    <div class="container-fluid" style="padding-top:30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加用户:</h3>
+            </div>
+            <div class="form-horizontal" style="padding-top:10px;">
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 text-center">用户名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="uname" class="form-control" id="uname" placeholder="用户名称">
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-2 text-center">是否显示</label>
+                    <div class="col-sm-6">
+                        <input type="radio" name="status" class="status" value="1" checked="checked">是
+                        <input type="radio"  name="status" value="2">否
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-2 text-center">用户密码</label>
+                    <div class="col-sm-6">
+                        <input type="text"  name="password" class="form-control" id="password"  value="" placeholder="用户密码">
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-2 text-center">用户角色</label>
+                    <div class="col-sm-6">
+                        <?php foreach ($role as $key => $v): ?>
+                            <label><input type="checkbox"  name="role_id[]" class="form-control" id="role_id"  value="{$v.id}" >{$v.name}</label>
+                        <?php endforeach ?>
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 text-center">
+                        <button type="button" id="submit"name="submit" class="btn btn-default">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="margin-top:100px;">
+        <div class="modal-dialog">
+            <div class="modal-content" style="height:200px;">
+                <div class="modal-header">
+                    <button type="button" style="margin-top:-5px;" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" id="info" style="text-align:center;height:100px;line-height:100px;font-size:20px;padding:none;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        $('#uname').blur(function(){
+            if($('#uname').val()!=''){
+                $('#uname').parent().next('div.msg').html('');
+            }else{
+                $('#uname').parent().next('div.msg').html('').html('<span style="color:red;">用户名称不能为空</span>');
+            }
+        })
+        $('#password').blur(function(){
+            if($('#password').val()!=''){
+                $('#password').parent().next('div.msg').html('');
+            }else{
+                $('#password').parent().next('div.msg').html('').html('<span style="color:red;">用户密码不能为空</span>');
+            }
+        })
+        function getCheckboxVlaue() {
+            var str="";
+            $("input[type='checkbox']:checked").each(function(){ 
+                str += $(this).val()+"_";
+            });
+            return str;
+        }
+        $('#submit').click(function(){
+            var uname=$('#uname').val().replace(/^\s+|\s+$/g,"");
+            var password=$('#password').val().replace(/^\s+|\s+$/g,"");
+            var status=$("input[name='status']:checked").val();
+
+            var role_id=getCheckboxVlaue();
+            var url="{:U('Adxjl/Rbac/addUser')}";
+            var data={'uname':uname,'password':password,'status':status,'role_id':role_id};
+            if(!name){
+                $('#uname').parent().next('div.msg').html('').html('<span style="color:red;">用户名称不能为空</span>');
+                return false;
+            }
+            if(!password){
+                $('#password').parent().next('div.msg').html('').html('<span style="color:red;">用户密码不能为空</span>');
+                return false;
+            }
+            if(role_id.length<2){
+                $('#info').html('').html('至少选择一个角色');
+                $('#myModal').modal('show');
+                return false;
+            }
+            $.post(url,data,function(d){
+                if(d.code=='1'){
+                    $('#info').html('').html(d.msg);
+                    $('#myModal').modal('show');
+                    setTimeout(function(){
+                        location.href="{:U('Adxjl/Rbac/user')}";
+                    },1000);
+                }else{
+                   $('#info').html('').html(d.msg);
+                    $('#myModal').modal('show');
+                }
+            })
+        })
+    })    
+</script>
+</html>

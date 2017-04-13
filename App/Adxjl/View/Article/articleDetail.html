@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小静龙 - 文章添加</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <script  src="__PUBLIC__/js/jquery.min.js"></script>   
+    <script  src="__PUBLIC__/js/bootstrap.min.js"></script> 
+    <script  src="__PUBLIC__/ueditor/ueditor.config.js"></script> 
+    <script  src="__PUBLIC__/ueditor/ueditor.all.min.js"></script> 
+    <script type="text/javascript">
+        $(function(){
+            window.UEDITOR_HOME_URL="__PUBLIC__/ueditor/";
+            window.UEDITOR_CONFIG.initialFrameHeight=800;
+            window.UEDITOR_CONFIG.initialFrameWidth='100%';
+            window.UEDITOR_CONFIG.imageUrl="{:U('Adxjl/Article/upimg')}";//图片上传提交地址
+            window.UEDITOR_CONFIG.imagePath='__ROOT__';//修正地址
+            UE.getEditor('content');
+        })
+        
+    </script>
+</head>
+<body>
+    <div class="container-fluid" style="padding-top:30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">发布文章:</h3>
+            </div>
+                <div class="form-horizontal" action="{:U('Adxjl/Article/addArticleHandle')}" method="post" style="padding-top:10px;">
+                    <div class="form-group">
+                        <label for="firstname" class="col-sm-2 text-center">文章标题</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="title" class="form-control" id="title" value="{$articleInfo.title}" placeholder="文章标题">
+                        </div>
+                        <div class="col-sm-4 msg"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2 text-center">作者</label>
+                        <div class="col-sm-6">
+                            <input type="text"  name="author" class="form-control" id="author"  value="{$articleInfo.author}" placeholder="作者">
+                        </div>
+                        <div class="col-sm-4 msg"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2 text-center">是否显示</label>
+                        <div class="col-sm-6">
+                        <?php if ($articleInfo['isshow']): ?>
+                            <input type="radio" name="isshow" class="isshow"value="1"checked="checked">是
+                            <input type="radio"  name="isshow" value="2">否
+                        <?php else: ?>
+                            <input type="radio" name="isshow" class="isshow"value="1">是
+                            <input type="radio"  name="isshow" value="2" checked="checked">否
+                        <?php endif ?>
+                        </div>
+                        <div class="col-sm-4 msg"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2 text-center">选择文章分类</label>
+                        <div class="select col-sm-6">
+                            <select name="cid" id="cid">
+                                <option value="{$articleInfo.ccid}">{$articleInfo.cname}</option>
+                                <?php foreach ($category as $k=> $v): ?>
+                                    <?php if ($v['cid']!=$articleInfo['ccid']): ?>
+                                        <option value="{$v.cid}">{$v.cname}</option>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="col-sm-4 msg"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="col-sm-2 text-center">上传图片</label>
+                        <div class="textarea col-sm-2">
+                            <input type="file" name="upimage" id="upimage" value="">
+                        </div>
+                        <div class="col-sm-1 msg"></div>
+                        <div class="textarea col-sm-4">
+                            
+                            <img src="__ROOT__<?php echo $articleInfo['thumb'] ;?>" id="thumb" width="50px" height="50px">
+                            <input type="hidden"  name="thumb"  value="<?php echo $articleInfo['thumb'];?>">
+                        </div>
+                        
+                    </div>
+                    <div class="form-group"  style="height:auto;min-height:500px;">
+                        <label for="lastname" class="col-sm-2 text-center">添加文章内容</label>
+                        <div class="textarea col-sm-6">
+                            <textarea  id="content"  name="content">{$articleInfo.content}</textarea>
+                        </div>
+                        <div class="col-sm-4 msg"></div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                      <input type="hidden" name="aid" id="aid" value="{$articleInfo.aid}">
+                         <button type="button" id="submitInfo" class="btn btn-default">提交</button>
+                      </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="margin-top:100px;">
+        <div class="modal-dialog">
+            <div class="modal-content" style="height:200px;">
+                <div class="modal-header">
+                    <button type="button" style="margin-top:-5px;" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" id="info" style="text-align:center;height:100px;line-height:100px;font-size:20px;padding:none;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="__PUBLIC__/js/LocalResizeIMG.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/js/mobileBUGFix.mini.js"></script> 
+<script type="text/javascript">
+var rootUrl ="__ROOT__";
+    $(function(){
+        $('#upimage').localResizeIMG({
+            width:500,
+            quality: 1,
+            success: function (result) {  
+                var submitData={ base64_string:result.clearBase64, }; 
+                $('#upimage').parent().next('div.msg').html('<a style="color:red;font-weight:700;font-size16px;">正在上传...</a>');
+                $.ajax({
+                    type: "POST",
+                    url: "{:U('Adxjl/Article/upimg')}",
+                    data: {'submitData':submitData},
+                    dataType:"json",
+                    success: function(data){
+                        if (data.status==1) {
+                            $('#upimage').parent().next('div.msg').html('上传成功');
+                            $('#thumb').attr('src','');
+                            $('#thumb').attr('src',rootUrl+data.url.substring(1));
+                            $("input[name='thumb']").val(data.url);
+                        }else{
+                            $('#upimage').parent().next('div.msg').html('').html('上传失败');
+                        }
+                    }, 
+                    complete :function(XMLHttpRequest, textStatus){},
+                    error:function(XMLHttpRequest, textStatus, errorThrown){}
+                }); 
+            }     
+        }); 
+        $('#title').blur(function(){
+            if($('#title').val()!=''){
+                $('#title').parent().next('div.msg').html('');
+            }
+        })
+        $('#content').blur(function(){
+            if($('#content').val()!=''){
+                $('#content').parent().next('div.msg').html('');
+            }
+        })
+        $('#submitInfo').click(function(){
+            var title=$('#title').val().replace(/^\s+|\s+$/g,"");
+            var author=$('#author').val().replace(/^\s+|\s+$/g,"");
+            var isshow=$("input[name='isshow']:checked").val();
+            var thumb=$("input[name='thumb']").val();
+            var cid=$("#cid").val();
+            var aid=$('#aid').val();
+            var content=UE.getEditor('content').getContent();
+            var url="{:U('Adxjl/Article/editArticle')}";
+            var data={'aid':aid,'title':title,'author':author,'isshow':isshow,'cid':cid,'content':content,'thumb':thumb};
+            if(!title){
+                $('#title').parent().next('div.msg').html('').html('<span style="color:red;">文章标题不能为空</span>');
+                return false;
+            }
+            $.post(url,data,function(d){
+                if(d.code=='1'){
+                    $('#info').html('').html(d.msg);
+                    $('#myModal').modal('show');
+                    setTimeout(function(){
+                        location.href="{:U('Adxjl/Article/article')}";
+                    },1000);
+                }else{
+                   $('#info').html('').html(d.msg);
+                    $('#myModal').modal('show');
+                }
+            })
+        })
+    })    
+</script>
+</html>

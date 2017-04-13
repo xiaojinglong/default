@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小静龙 - 节点显示</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <style type="text/css">
+    #page div a{width:20px;margin:5px;font-size:18px;};
+    #page div span{width:20px;margin:5px;}
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="padding-top:30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">节点显示:</h3>
+            </div>
+            <table class="table">
+                <div class="col-xs-12 col-sm-12">[<a href="{:U('Adxjl/Rbac/addNode')}">添加应用</a>]</div>
+                <?php if ($node): ?>
+                    <?php foreach ($node as $k => $v): ?>
+                        <div class="col-xs-12 col-sm-12" style="border-bottom:1px solid #ccc;padding:5px;">
+                            <p><span class="btn btn-success">{$v.remark}</span>[<a href="{:U('Adxjl/Rbac/addNode',array('pid'=>$v['id'],'level'=>2))}">添加控制器</a>]</p>
+                        </div>    
+                        <div class="col-xs-12 col-sm-12">
+                        <?php foreach ($v['child'] as $key => $value): ?>
+                            <p class="col-xs-12 col-sm-12" style="padding:5px;border-bottom:1px solid #ccc;"><span class="btn btn-warning">{$value.remark}</span>[<a href="{:U('Adxjl/Rbac/addNode',array('pid'=>$value['id'],'level'=>3))}">添加方法</a>]</p>
+                            <div class="col-xs-12 col-sm-12" style="border-bottom:1px solid #ccc;">
+                            <?php foreach ($value['child'] as $key => $val): ?>
+                                <p class="col-xs-4 col-sm-4"><span class="btn btn-danger">{$val.remark}</span></p>
+                            <?php endforeach ?>
+                            </div>
+                        <?php endforeach ?>
+                        </div>
+                        
+                    <?php endforeach ?>   
+                <?php else: ?>
+                    <div><span>没有节点</span></div>
+                <?php endif ?>
+            </table>
+        </div>
+    </div>
+<script  src="__PUBLIC__/js/jquery.min.js"></script>   
+<script  src="__PUBLIC__/js/bootstrap.min.js"></script> 
+<script>
+</script>  
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小静龙 - 节点添加</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <script  src="__PUBLIC__/js/jquery.min.js"></script>   
+    <script  src="__PUBLIC__/js/bootstrap.min.js"></script> 
+</head>
+<body>
+    <div class="container-fluid" style="padding-top:30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加{$type}:</h3>
+            </div>
+            <div class="form-horizontal" action="{:U('Adxjl/Article/addArticleHandle')}" method="post" style="padding-top:10px;">
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 text-center">{$type}名称</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="节点名称">
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-2 text-center">是否显示</label>
+                    <div class="col-sm-6">
+                        <input type="radio" name="status" class="status" value="1" checked="checked">是
+                        <input type="radio"  name="status" value="2">否
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-2 text-center">{$type}标题</label>
+                    <div class="col-sm-6">
+                        <input type="text"  name="title" class="form-control" id="title"  value="" placeholder="节点标题">
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-2 text-center">{$type}排序</label>
+                    <div class="col-sm-6">
+                        <input type="text"  name="sort" class="form-control" id="sort"  value="" placeholder="节点排序">
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-2 text-center">{$type}描述</label>
+                    <div class="col-sm-6">
+                        <input type="text"  name="remark" class="form-control" id="remark"  value="" placeholder="节点描述">
+                    </div>
+                    <div class="col-sm-4 msg"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 text-center">
+                        <input  type="hidden"  name="level" id="level" value="{$level}">
+                        <input  type="hidden"  name="pid" id="pid" value="{$pid}">
+                        <button type="button" id="submit"name="submit" class="btn btn-default">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="margin-top:100px;">
+        <div class="modal-dialog">
+            <div class="modal-content" style="height:200px;">
+                <div class="modal-header">
+                    <button type="button" style="margin-top:-5px;" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body" id="info" style="text-align:center;height:100px;line-height:100px;font-size:20px;padding:none;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        var re = /^[0-9]+.?[0-9]*$/;       
+        $('#name').blur(function(){
+            if($('#name').val()!=''){
+                $('#name').parent().next('div.msg').html('');
+            }else{
+                $('#name').parent().next('div.msg').html('').html('<span style="color:red;">节点名称不能为空</span>');
+            }
+        })
+        $('#remark').blur(function(){
+            if($('#remark').val()!=''){
+                $('#remark').parent().next('div.msg').html('');
+            }else{
+                $('#remark').parent().next('div.msg').html('').html('<span style="color:red;">节点描述不能为空</span>');
+            }
+        })
+        $('#title').blur(function(){
+            if($('#title').val()!=''){
+                $('#title').parent().next('div.msg').html('');
+            }else{
+                $('#title').parent().next('div.msg').html('').html('<span style="color:red;">节点标题不能为空</span>');
+            }
+        })
+        $('#sort').blur(function(){
+            if($('#sort').val()!=''&&re.test($('#sort').val())){
+                $('#sort').parent().next('div.msg').html('');
+            }else{
+                $('#sort').parent().next('div.msg').html('').html('<span style="color:red;">节点排序为整数</span>');
+            }
+        })
+        $('#submit').click(function(){
+            var name=$('#name').val().replace(/^\s+|\s+$/g,"");
+            var remark=$('#remark').val().replace(/^\s+|\s+$/g,"");
+            var title=$('#title').val().replace(/^\s+|\s+$/g,"");
+            var status=$("input[name='status']:checked").val();
+            var sort=$("#sort").val();
+            var pid=$("#pid").val();
+            var level=$("#level").val();
+            var url="{:U('Adxjl/Rbac/addNode')}";
+            var data={'name':name,'remark':remark,'title':title,'status':status,'sort':sort,'pid':pid,'level':level};
+            if(!name){
+                $('#name').parent().next('div.msg').html('').html('<span style="color:red;">节点名称不能为空</span>');
+                return false;
+            }
+            if(!title){
+                $('#title').parent().next('div.msg').html('').html('<span style="color:red;">节点标题不能为空</span>');
+                return false;
+            }
+            if(!re.test(sort)){
+                $('#sort').parent().next('div.msg').html('').html('<span style="color:red;">节点排序为整数</span>');
+                return false;
+            }
+            
+            if(!remark){
+                $('#remark').parent().next('div.msg').html('').html('<span style="color:red;">节点描述不能为空</span>');
+                return false;
+            }
+            $.post(url,data,function(d){
+                if(d.code=='1'){
+                    $('#info').html('').html(d.msg);
+                    $('#myModal').modal('show');
+                    setTimeout(function(){
+                        location.href="{:U('Adxjl/Rbac/node')}";
+                    },1000);
+                }else{
+                   $('#info').html('').html(d.msg);
+                    $('#myModal').modal('show');
+                }
+            })
+        })
+    })    
+</script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小静龙 - 分类显示</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <style type="text/css">
+    #page div a{width:20px;margin:5px;font-size:18px;};
+    #page div span{width:20px;margin:5px;}
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="padding-top:30px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">分类显示:</h3>
+            </div>
+            <table class="table">
+                <th>分类名称</th><th>是否显示</th><th>排序</th><th>操作</th>
+                <?php if ($Category): ?>
+                    <?php foreach ($Category as $k => $v): ?>
+                        <tr>
+                            <td>{$v['cname']}</td>
+                            <td>
+                                <?php if ($v['isopen']==1): ?>
+                                    打开
+                                <?php else: ?>
+                                    关闭
+                                <?php endif ?>
+                            </td>
+                            <td>{$v['sort']}</td>
+                            <td>
+                                [<a href="{:U('Adxjl/Category/categoryDetail/',array('cid'=>$v['cid']))}">修改</a>]
+                                <!-- [<a href="{:U('Adxjl/Category/categoryDetail/'),array('cid'=>$v['cid'])}">添加</a>] -->
+                                [<a href="{:U('Adxjl/Category/delete/',array('cid'=>$v['cid']))}">删除</a>]
+                            </td>
+                        </tr>    
+                    <?php endforeach ?>   
+                <?php else: ?>
+                    <tr><td>没有分类数据</td></tr>
+                <?php endif ?>
+
+            </table>
+            
+        </div>
+        <div id="page" style="width:100%;height:20px;padding:0px 10px;text-align:center;"><?php echo $page ?></div>
+    </div>
+<script  src="__PUBLIC__/js/jquery.min.js"></script>   
+<script  src="__PUBLIC__/js/bootstrap.min.js"></script> 
+<script>
+</script>  
+</body>
+</html>

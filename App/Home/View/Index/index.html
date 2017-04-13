@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>小静龙 -- 首页</title>
+	<link rel="stylesheet" href="__PUBLIC__/newstyle/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/newstyle/css/style.css">
+
+	<style>
+	div.page{
+        text-align: center;
+        font-size: 18px;
+
+    }
+	div.page a{
+        text-align: center;
+        padding:5px;
+        text-decoration: none;
+        font-size: 18px;
+        
+    }
+    div.page span{
+        text-align: center;
+        padding:5px;
+        font-size: 18px;
+        
+    }</style>
+	<script src="__PUBLIC__/newstyle/js/jquery.min.js"></script>
+	<script src="__PUBLIC__/newstyle/js/bootstrap.min.js"></script>
+	
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+ <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+ <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script>
+	$(function () {
+  		
+  		$.get("{:U('Home/Index/getClickArticle')}",'',function(d){
+  			if(d.code=='1'){
+  				var html='';
+  				var d=d.data;
+  				var url="{:U('Home/Article/detail/','','')}";
+  				for (var i = 0; i <d.length; i++) {
+  					html+='<div class="col-md-2"  >';
+  					html+='<a href="'+url+'/aid/'+d[i].aid+'" target="_blank"  title="'+d[i].title+'"><img src="'+"__ROOT__/"+d[i].thumb+'" style="min-width:165px;max-width:165px;min-height:116px;max-height:116px;" data-toggle="tooltip" data-placement="bottom" title="'+d[i].title+'" class="img-responsive img-thumbnail" alt=""></a></div>';
+  				};
+  				$('div.hotArticle').append(html);
+  			}
+  		})
+
+  		$.get("{:U('Home/Index/getNewArticle')}",'',function(d){
+  			if(d.code=='1'){
+  				var html='';
+  				var d=d.data;
+  				var url="{:U('Home/Article/detail/','','')}";
+  				for (var i = 0; i <d.length; i++) {
+  					html+='<div class="col-md-12 none-padding add-margin-bottom-xs  ">';
+  					html+='<a href="'+url+'/aid/'+d[i].aid+'" target="_blank"><button class="text-xs bg-primary none-border add-margin-right-xs">'+parseInt(i+1)+'</button>'+d[i].title+'</a></div>';
+  				};
+  				$('div.newArticle').append(html);
+  				$('[data-toggle="tooltip"]').tooltip();
+  			}
+  		})
+  		$.get("{:U('Home/Index/getClickArticle')}",'',function(d){
+  			if(d.code=='1'){
+  				var html='';
+  				var d=d.data;
+  				var url="{:U('Home/Article/detail/','','')}";
+  				for (var i = 0; i <d.length; i++) {
+  					html+='<div class="col-md-12 none-padding add-margin-bottom-xs  ">';
+  					html+='<a href="'+url+'/aid/'+d[i].aid+'" target="_blank"><button class="text-xs bg-primary none-border add-margin-right-xs">'+parseInt(i+1)+'</button>'+d[i].title+'</a></div>';
+  				};
+  				$('div.clickArticle').append(html);
+  			}
+  		})
+
+  		
+	})
+</script>
+</head>
+<body style="min-width:1024px;">
+	<header class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<h1><a href="{:U('Home/Index/index')}">博客</a></h1>
+			</div>
+			<div class="col-md-8" style="line-height:69px;">
+				<ul class="nav nav-pills">
+					<li role="presentation" class="">
+				    	<a  href="{:U('Home/Index/index')}" style="font-size:18px;font-weight:700;" >首页</a>
+				  	</li>
+					<?php foreach ($category as $k => $v): ?>
+				 	<li role="presentation" class="">
+				    	<a  href="{:U('Home/Category/cate/',array('cid'=>$v['cid']))}" style="font-size:18px;font-weight:700;" target="_blank" role="button" >{$v.cname}</a>
+				  	</li>
+					<?php endforeach ?>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="clearfix"></div>
+	
+	<div class="clearfix"></div>
+	<section class="commonCss add-padding-bottom-xs">
+	 	<div class="container ">
+			<div class="row hotArticle">
+				<div class="col-md-12 none-padding"><h3 class="page-header none-padding">最热文章</h3></div>
+				
+			</div>
+		</div>
+	</section>
+	<div class="clearfix"></div>
+	<!-- left -->
+	<section class="commonCss">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 none-padding"><h3>文章列表</h3></div>
+				<div class="col-md-8">
+				<?php foreach ($Article as $k => $v): ?>
+					<div class="row">
+						<div class="col-md-12 none-padding">
+							<h4><a href="">{$v.title}</a></h4>
+							<div class="col-md-12 none-padding">
+								<div class="col-md-3 none-padding">
+									<a href="{:U('Home/Article/detail/',array('aid'=>$v['aid']))}"><img src="__ROOT__/{$v.thumb}" style="min-width:165px;max-width:165px;min-height:116px;max-height:116px;" alt="" class="img-responsive img-thumbnail"></a>
+								</div>
+								<div class="col-md-9">
+									<p><?php echo mb_substr(htmlspecialchars_decode($v['content']),0,120,'utf8').'......';?></p>
+									<a class="pull-right bg-danger btn"  href="{:U('Home/Article/detail/',array('aid'=>$v['aid']))}" style="margin-bottom:0px;"  target="_blank">阅读全文</a>
+								</div>
+								<div class="col-md-12 add-margin-bottom-xs add-padding-top-xs bg-info add-margin-top-xs">
+									<div class="col-md-3"><span class="glyphicon glyphicon-time">时间:{$v.time|date='Y-m-d',###}</span></div>
+									<div class="col-md-3"><span class="glyphicon glyphicon-user">作者:{$v.author}</span></div>
+									<div class="col-md-3"><span class="glyphicon glyphicon-list">分类:文章</span></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php endforeach ?>
+					<div class="col-md-12 center-block center-middle add-margin-top-md page">
+						<?php echo $page ?>
+					</div>
+				</div>
+
+
+				<!-- right -->
+				<div class="col-md-3 col-md-offset-1">
+					
+					<div class="row newArticle">
+						<h3 class="page-header">最新文章</h3>
+						
+					</div>
+					<div class="row clickArticle">
+						<h3 class="page-header">点击排行</h3>
+						
+					</div>
+					<div class="row freetime">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="commonCss add-margin-top-md" >
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 center-middle add-margin-top-xs">Copyright ©小静龙 浙ICP备15032894号-2
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260341518'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260341518%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
+				<div class="col-md-12 center-middle add-margin-top-xs"><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602005284" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="__PUBLIC__/images/beian.png" style="float:left;"/><p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33010602005284号</p></a></div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
